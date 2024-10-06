@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>example/files/files2/file2.c</title>
+</head>
+<body bgcolor="white">
+<hr/>
+example/files/files2/file2.c<p></p><pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define MAX_VERTICES 100
+
+// Structure to represent a node in adjacency list
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data)
+{
+    struct Node* newNode =
+      (struct Node*)malloc(sizeof(struct Node));
+<a name="1"></a><font color="#00FF00"><a href="match1-1.html#1" target="1"><img align="left" alt="other" border="0" src="http://moss.stanford.edu/bitmaps/tm_1_35.gif"/></a>
+
+    newNode-&gt;data = data;
+    newNode-&gt;next = NULL;
+    return newNode;
+}
+
+// Function to add an edge to the graph
+void addEdge(struct Node* adj[], int u, int v)
+{
+    struct Node* n = createNode(v);
+    n-&gt;next = adj[u];
+    adj[u] = n;
+
+    // Undirected graph
+    n = createNode(v);
+    n-&gt;next = adj[u];
+    adj[u] = n;
+}
+
+
+// Function to perform BFS for the entire graph
+void bfsDisconnected(struct Node* adj[], int V)
+</font>{
+    // Mark all vertices as not visited
+    int v[V];
+    for (int i = 0; i &lt; V; i++) {
+<a name="0"></a><font color="#FF0000"><a href="match1-1.html#0" target="1"><img align="left" alt="other" border="0" src="http://moss.stanford.edu/bitmaps/tm_0_40.gif"/></a>
+
+        v[i] = 0;
+    }
+
+    for (int i = 0; i &lt; V; ++i) {
+        if (!v[i]) {
+            bfs(adj, V, i, v);
+        }
+    }
+}
+
+int main()
+{
+    int V = 6; // Number of vertices
+    struct Node* a[V];
+
+    for (int i = 0; i &lt; V; ++i) {
+        a[i] = NULL; // Initialize adjacency list
+    }
+
+    // Add edges to the graph
+    addEdge(a, 0, 1);
+    addEdge(a, 0, 2);
+    addEdge(a, 3, 4);
+    addEdge(a, 4, 5);
+
+    // Perform BFS traversal for the entire graph
+    bfsDisconnected(a, V);
+</font>
+    return 0;
+}
+</pre>
+</body>
+</html>

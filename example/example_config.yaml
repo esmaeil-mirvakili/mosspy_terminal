@@ -1,0 +1,36 @@
+# programming language
+lang: c
+
+# output directory for storing html report
+output: example/output
+
+# path to directories or files for exclusion
+base:
+  - example/base/base1
+  - example/base/base2
+  - example/base/base_file.c
+
+# path to directories or files for comparision
+files:
+  - example/files/files1
+  - example/files/files2
+  - example/files/file.c
+
+# only consider files with following wildcards
+# remove this part to compare all files
+match:
+  - '*.c'
+  - '*.h'
+  - '*.cp'
+  - '*.cpp'
+  - '*.cc'
+
+# (optional) moss options
+# remove this part to use default options
+options:
+  m: 10   # ignore limit
+  d: 0    # directory mode
+  x: 0    # experimental server
+  c: ""   # comment string
+  n: 250  # number of matching files
+
